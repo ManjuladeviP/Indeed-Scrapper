@@ -1,51 +1,52 @@
-# Crunchbase Lead Generator
+# Indeed Scraper
 
 ## Overview
-This script automates the process of scraping company data from Crunchbase, performing exploratory data analysis (EDA), and training a machine learning model to identify potential leads. It uses Selenium for web scraping, BeautifulSoup for parsing HTML, and Scikit-learn for modeling.
+This Indeed Scraper is a Python-based tool designed to extract job postings from Indeed. It collects job titles, company names, locations, salaries (if available), and job descriptions, providing structured job data for analysis or job hunting.
 
 ## Features
-- Scrapes company data from Crunchbase
-- Extracts details such as funding amount, industry, location, employee count, and founding year
-- Uses sample data when scraping is not available
-- Performs Exploratory Data Analysis (EDA) with Seaborn and Matplotlib
-- Trains a machine learning model (Random Forest Classifier) to predict potential leads
-- Identifies high-probability investment opportunities
+- Scrapes job listings from Indeed based on keyword and location.
+- Extracts job title, company name, location, salary, and job description.
+- Saves data in CSV or JSON format for easy analysis.
+- Uses BeautifulSoup and requests for web scraping.
 
 ## Requirements
-Ensure you have the following installed before running the script:
+Ensure you have the following dependencies installed before running the scraper:
 
-- Python 3.x
-- Google Chrome (latest version)
-- ChromeDriver (managed via `webdriver-manager`)
-- Required Python libraries:
-  - `selenium`
-  - `webdriver-manager`
-  - `beautifulsoup4`
-  - `pandas`
-  - `numpy`
-  - `matplotlib`
-  - `seaborn`
-  - `scikit-learn`
-
-## Installation
-1. Clone this repository or download the script.
-2. Install dependencies by running:
-   ```sh
-   pip install selenium webdriver-manager beautifulsoup4 pandas numpy matplotlib seaborn scikit-learn
-   ```
-3. Ensure Chrome is installed on your system.
+```sh
+pip install requests beautifulsoup4 pandas
+```
 
 ## Usage
-Run the script using:
+1. Clone this repository:
+   ```sh
+   git clone https://github.com/yourusername/indeed-scraper.git
+   cd indeed-scraper
+   ```
+2. Run the scraper:
+   ```sh
+   python scraper.py --keyword "Software Engineer" --location "New York"
+   ```
+
+### Command-line Arguments
+| Argument       | Description                                      |
+|---------------|--------------------------------------------------|
+| `--keyword`   | Job title or keyword (e.g., "Data Scientist")    |
+| `--location`  | Job location (e.g., "San Francisco, CA")        |
+| `--pages`     | Number of pages to scrape (default is 1)        |
+| `--output`    | Output file format (`csv` or `json`, default: csv) |
+
+Example:
 ```sh
-python crunchbase_lead_generator.py
+python scraper.py --keyword "Python Developer" --location "Remote" --pages 3 --output json
 ```
-By default, the script scrapes 5 pages of Crunchbase data, trains a model, and identifies potential leads.
 
-## Customization
-- Modify the `scrape_crunchbase(num_pages=5)` function to change the number of pages scraped.
-- Adjust the `get_potential_leads(threshold=0.7)` function to filter leads based on probability.
-- Update the model parameters in `train_model()` to improve predictions.
+## Output
+The scraped job listings are stored in `output.csv` or `output.json` in the same directory.
 
-## Legal Disclaimer
-Scraping Crunchbase without permission may violate its [Terms of Service](https://www.crunchbase.com/terms). Ensure compliance by reviewing their policies or using authorized APIs.
+## Legal & Ethical Considerations
+- This scraper should be used for personal and educational purposes only.
+- Scraping Indeed may violate their Terms of Service. Use responsibly.
+- Avoid overloading Indeed's servers; set appropriate request delays.
+
+## Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
